@@ -62,5 +62,6 @@ Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections
 Hier kann man sie downloaden:
 
 https://speechman.github.io/back2normal/app/degenderizer.zip
-![grafik](https://github.com/Speechman/back2normal/assets/98193439/07c02f47-0ce9-4aee-92ca-b3758e00927b)
+![image](https://github.com/Speechman/back2normal/assets/148591253/60b4cc7b-4a40-4608-921c-4aa93c9017a6)
+
 
