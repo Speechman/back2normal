@@ -61,6 +61,6 @@ Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections
 # Es gibt jetzt auch eine App (De-Genderizer) um das Patchen aus dem laufenden System heraus vorzunehmen
 Hier kann man sie downloaden:
 
-https://macthings.github.io/back2normal/app/degenderizer.zip
-![grafik](https://github.com/MacThings/back2normal/assets/98193439/07c02f47-0ce9-4aee-92ca-b3758e00927b)
+https://speechman.github.io/back2normal/app/degenderizer.zip
+![grafik](https://github.com/Speechman/back2normal/assets/98193439/07c02f47-0ce9-4aee-92ca-b3758e00927b)
 
