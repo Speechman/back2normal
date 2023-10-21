@@ -7,7 +7,7 @@
 #
 # Das Script setzt voraus, dass Du dich bereits im Terminal des Recovery Modus Deins Mac/Hacks befindest.
 
-if ! system_profiler SPSoftwareDataType | grep "Boot Mode" >/dev/null 2>&1; then
+if system_profiler SPSoftwareDataType | grep "Boot Mode" >/dev/null 2>&1; then
     echo -e "\nDieses Script ist nicht dafür konzipiert im laufenden, normalen System ausgeführt zu werden. Es ist ausschließlich für den Recovery Modus bestimmt. Vorgang bricht nun ab. Details sind hier zu finden:\n\nhttps://github.com/Speechman/back2normal\n"
     exit 1
 fi
