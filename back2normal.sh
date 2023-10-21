@@ -96,7 +96,7 @@ do
 
   if [[ "$line" = *".loctable" ]] || [[ "$line" = *".strings" ]]; then
     binary="1"
-    plutil -convert xml1 "$line"
+    plutil -convert xml1 "$line" >/dev/null 2>&1
   fi
 
   sed -ib \
@@ -166,15 +166,15 @@ do
     -e 's/vom:von/vom/g' \
     -e 's/Vorgesetzte:r/Vorgesetzter/g' \
     -e 's/Zahlungspflichtige:r/Zahlungspflichtiger/g' \
-    "$line"
+    "$line" >/dev/null 2>&1
 
 	echo -ne " $counter von $count\r"
 	((counter++))
 
-	rm "$line"b
+	rm "$line"b >/dev/null 2>&1
 
 	if [[ "$binary" = "1" ]]; then
-    plutil -convert binary1 "$line"
+    plutil -convert binary1 "$line" >/dev/null 2>&1
 	fi
 
     hash_value=$( md5 "$line" | sed 's/.*=//g' | xargs )
@@ -192,7 +192,9 @@ chmod 444 usr/share/degenderizer_brain.db
 
 echo -e "\nDateien manifestieren ..."
 
-bless --mount /Volumes/"$sys_part" --bootefi --create-snapshot
-
-echo -e "\nDie Änderungen wurden auf der System Partition gespeichert. Zum Neustarten gib folgendes ein:\n"
-echo -e "\nreboot"
+if bless --mount /Volumes/"$sys_part" --bootefi --create-snapshot; then
+    echo -e "\nDie Änderungen wurden auf der System Partition gespeichert. Zum Neustarten gib folgendes ein:\n"
+    echo -e "\nreboot\n"
+else
+    echo -e "Beim Blessen ist ein Fehler aufgetreten. Starte am besten den Rechner neu und versuche es erneut."
+fi
