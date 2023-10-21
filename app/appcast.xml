@@ -3,13 +3,13 @@
     <channel>
         <title>De-Genderizer</title>
         <item>
-            <title>1.0.7</title>
+            <title>1.0.8</title>
             <pubDate>Sat, 21 Oct 2023 13:05:22 +0200</pubDate>
-            <sparkle:version>107</sparkle:version>
-            <sparkle:shortVersionString>1.0.7</sparkle:shortVersionString>
+            <sparkle:version>108</sparkle:version>
+            <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:releaseNotesLink>https://speechman.github.io/back2normal/app/degenderizer.html</sparkle:releaseNotesLink>
-            <enclosure url="https://speechman.github.io/back2normal/app/degenderizer.zip" length="1503332" type="application/octet-stream" sparkle:edSignature="jyf4Kp+dSuHIHz1gi+blpprTGVoLLvr/S20qsnfaeC4hFRW8lxceEL6tVb759wf+NGf7T75GjIt1/txlgUDzDw=="/>
+            <enclosure url="https://speechman.github.io/back2normal/app/degenderizer.zip" length="1512309" type="application/octet-stream" sparkle:edSignature="KPZ2awNMsbbGrfmjbEhO4TM36kBoaHBda2eFIHwvajtpMSx0QHUvIBC3AB2CGz4jLQ0lzuQNg087cnsh+vD2Aw=="/>
         </item>
     </channel>
 </rss>
