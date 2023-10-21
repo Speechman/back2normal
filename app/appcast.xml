@@ -9,7 +9,7 @@
             <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:releaseNotesLink>https://speechman.github.io/back2normal/app/degenderizer.html</sparkle:releaseNotesLink>
-            <enclosure url="https://speechman.github.io/back2normal/app/degenderizer.zip" length="1512309" type="application/octet-stream" sparkle:edSignature="KPZ2awNMsbbGrfmjbEhO4TM36kBoaHBda2eFIHwvajtpMSx0QHUvIBC3AB2CGz4jLQ0lzuQNg087cnsh+vD2Aw=="/>
+            <enclosure url="https://speechman.github.io/back2normal/app/degenderizer.zip" length="1512313" type="application/octet-stream" sparkle:edSignature="m3Agno+bs39wRNKFxQlIXkVMnIet5zX/OVDXq2luATAUuwwyJUWLzWNAQgsBRNJEW6chCBoXm31S7FfYiXPCCg=="/>
         </item>
     </channel>
 </rss>
