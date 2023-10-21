@@ -42,7 +42,7 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 - Lade die macOS-Installationsanwendung herunter und starte sie, um macOS auf einer neuen Partition zu installieren.
 - Lasse die Installation durchlaufen und warte auf den Neustart.
 - Starte im EFI-Startbildschirm das Volume "macOS Installer."
-- Achte darauf, dass sich der Name des Zielvolumes im EFI-Startbildschirm ändert.
+- Achte darauf, dass sich der Name des Zielvolumes im EFI-Startbildschirm zu dem Namen ändert den Du zuvor mit dem Festplattendienstprogramm vergeben hast.
 - Starte in den Recovery-Modus und führe das Skript aus.
 - Nach einem Neustart erwartet dich eine genderfreie Benutzeroberfläche.
 
