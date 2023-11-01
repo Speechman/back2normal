@@ -1,13 +1,13 @@
 #!/bin/bash
 #
 #
-# De-Gender Script (v1.6)
+# De-Gender Script (v2.0)
 #
 # Endlich wieder normales Deutsch für macOS!
 #
 # Das Script setzt voraus, dass Du dich bereits im Terminal des Recovery Modus Deins Mac/Hacks befindest.
 
-if system_profiler SPSoftwareDataType | grep "Boot Mode" >/dev/null 2>&1; then
+if [ -f /usr/sbin/system_profiler ]; then
     echo -e "\nDieses Script ist nicht dafür konzipiert im laufenden, normalen System ausgeführt zu werden. Es ist ausschließlich für den Recovery Modus bestimmt. Vorgang bricht nun ab. Details sind hier zu finden:\n\nhttps://github.com/Speechman/back2normal\n"
     exit 1
 fi
@@ -89,6 +89,9 @@ while IFS= read -r line
 do
 
   line=$( echo "$line" | sed 's/^\///' )
+
+if [ -f "$line" ]; then
+  
   hash_value=$( md5 "$line" | sed 's/.*=//g' | xargs )
   binary="0"
 
@@ -184,6 +187,7 @@ do
 else
 	echo -ne " $counter von $count war bereits gepatcht und wurde übersprungen\n"
 	((counter++))
+fi
 fi
 
 done < "$input"
