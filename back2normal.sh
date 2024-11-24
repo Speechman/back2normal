@@ -200,6 +200,8 @@ done < "$input"
 
 chmod 444 usr/share/degenderizer_brain.db
 
+rm Users/.localized >/dev/null 2>&1
+
 echo -e "\nDateien manifestieren ..."
 
 if bless --mount /Volumes/"$sys_part" --bootefi --create-snapshot; then
