@@ -39,28 +39,30 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 # Anwendungsszenarien:
 
 ## 1. Frische Installation
-- Lade die macOS-Installationsanwendung herunter und starte sie, um macOS auf einer neuen Partition zu installieren.
-- Lasse die Installation durchlaufen und warte auf den Neustart.
-- Starte im EFI-Startbildschirm das Volume "macOS Installer."
-- Achte darauf, dass sich der Name des Zielvolumes im EFI-Startbildschirm zu dem Namen ändert den Du zuvor mit dem Festplattendienstprogramm vergeben hast.
-- Starte in den Recovery-Modus und führe das Skript aus.
-- Nach einem Neustart erwartet dich eine genderfreie Benutzeroberfläche.
+- Nachdem die frische Installation durchgelaufen ist lege als erstes einen "Update"-User an. Bei mir heisst er sinnigerweise "Update". (-:
+- Damit loggst Du Dich dann erstmal ein.
+- Erzeuge mit scan.sh gemäß untenstehender Anleitung die notwendige catalog.db Datei.
+- Fahre das Gerät herunter und starte unmittelbar ins Recovery
+- Lass back2normal.sh durchlaufen
+- Nach einem Reboot kannst Du dann Deine(n) Reguläre(n) User in macOS anlegen
 
-## 2. Bereits bestehende Installation: 
-- Starte das bestehende System im Recovery-Modus und führe das Skript aus.
-- Starte das System neu. Ein Großteil der Sprachanpassungen wird übernommen.
-
-Das war's! Im Wesentlichen verhält es sich wie bei einer frischen Installation, aber mit einer Besonderheit. Wenn du das System mit dem Skript von genderbezogener Sprache befreit hast und bereits ein oder mehrere Benutzer auf dem System vorhanden waren, wird ein Großteil der Sprachanpassungen nach einem Neustart übernommen. Es gibt jedoch drei Stellen, die weiterhin in genderbezogener Sprache verbleiben: Der "Benutzer:innen"-Ordner im Root-Verzeichnis und die Systemeinstellung "Benutzer:innen & Gruppen" sowie die dazugehörige Überschrift. Wenn dich das nicht stört, kannst du es so belassen. Wer jedoch darauf besteht, diese Sprachanpassungen zu entfernen, muss das System gemäß der Anleitung für eine "Frische Installation" auf einer anderen Partition neu aufsetzen und dann über den Migrations-Assistenten seine Daten zurückspielen. Danach kannst du sicher sein, dass die genderbezogene Sprache entfernt wurde.
-
-EDIT:
-Es hat sich herausgestellt, dass es nicht notwendig ist das Systen neu aufzusetzen. 
-- Erstelle einen neuen User (z.b. "Update"). Logge Dich mit diesem User ein.
-- Lade Dir einen Fullinstaller herunter und starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten.
+## 2. Was tun bei einem Update: 
+- Erstelle einen neuen User (z.b. "Update") sofern Du das nicht schon bei einer Neuinstallation getan hast. Logge Dich mit diesem User ein.
+- Lasse das Update vom System einspielen.
+- Neustart und direkter Reboot ins Recovery.
+- Hier wie gewohnt das back2normal.sh Script ausführen.
+ 
+## 3. Was tun wenn man das Update nicht mit dem "Updater"-User durchgeführt hast:    
+- Lade Dir einen Fullinstaller herunter. (z.B. mit AnyMACOs oder GibMacOS). Starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten. Es ist lediglich wie ein Update.
 - Wenn die Installation durchgelaufen ist, melde Dich mit dem "Update" User an. NICHT mit Deinem regulären User!! Dann fährst Du das Gerät herunter und startest in den Recovery-Modus.
 - Hier wie gewohnt das back2normal.sh Script ausführen.
-- Et voila ist dein bereits vorhandenes altes System genderfrei.
+- Danach kannst Du Dich mit dem regulären User wieder einloggen.
 
-Am besten ist es jedes zukünftige Update aus dem Update-User heraus zu starten. 
+Am besten ist es jedes zukünftige Update aus dem "Update"-User heraus zu starten. 
+
+## Warum das ganze Prozedere mit dem "Update"-User?
+Beim erstmaligen Einloggen nach einem Update legt macOS irgendwelche Cache-Dateien des Users neu an. Darunter auch ein Teil der Lokalisation. Diese Cache-Dateien habe ich bis heute nirgends im System finden können. Evtl. sind diese auch verschlüsselt. Keine Ahnung. Demzufolge kann man sie auch nicht manuell verändern.
+
 
 ## Was ist der Haken an der Sache?
 Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
