@@ -159,6 +159,7 @@ if [ -f "$line" ]; then
     -e 's/:r|/r|/g' \
     -e 's/Aktuelle:r/Aktueller/g' \
     -e 's/aktuelle:n/aktuellen/g' \
+    -e 's/Aktuelle:n/Aktuellen/g' \
     -e 's/ältere:r/älterer/g' \
     -e 's/ANDERE:R/ANDERER/g' \
     -e 's/angegebene:n/angegebenen/g' \
