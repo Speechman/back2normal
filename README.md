@@ -14,7 +14,7 @@ Bist du es leid, dass macOS dir die deutsche Gendersprache aufzwingt, ohne eine 
 Dieses Skript funktioniert ab macOS Ventura (13.x).
 
 ## Schritt-für-Schritt-Anleitung:
-1. Formatieren eines USB-Sticks oder nutze ein anderes Medium (Du kannst auch das User Verzeichnis des System Volumes verwenden) als FAT32, APFS oder HFS+. Es müssen folgende 4 Dateien immer zusammen in einem Ordner sein:
+1. Formatieren eines USB-Sticks oder nutze ein anderes Medium (Du kannst auch das User Verzeichnis des System Volumes verwenden) als FAT32, EXFat, APFS oder HFS+. Es müssen folgende 4 Dateien immer zusammen in einem Ordner sein:
 
 - back2normal.sh
 - suchbegriffe.txt
