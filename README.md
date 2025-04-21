@@ -14,15 +14,19 @@ Bist du es leid, dass macOS dir die deutsche Gendersprache aufzwingt, ohne eine 
 Dieses Skript funktioniert ab macOS Ventura (13.x).
 
 ## Schritt-für-Schritt-Anleitung:
-1. Formatieren eines USB-Sticks oder nutze ein anderes Medium (Du kannst auch das User Verzeichnis des System Volumes verwenden) als FAT32 oder HFS+ und Speichern des Skripts "back2normal.sh" sowie der Datenbank "catalog.db" und "suchbegriffe.txt" und "scan.sh" darauf.
-2. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
-3. Führe den Befehl aus:
+1. Formatieren eines USB-Sticks oder nutze ein anderes Medium (Du kannst auch das User Verzeichnis des System Volumes verwenden) als FAT32 oder HFS+. Es müssen folgende 4 Dateien immer zusammen in einem Ordner sein:
+back2normal.sh
+suchbegriffe.txt
+scan.sh
+2. Bevor Du ins Recovery startest musst Du noch eine catalog.db erzeugen. Dazu führst Du 'scan.sh' aus. Dies dauert ein paar Minuten. Die Datei catalog.db befindet sich danach ebenfalls in diesem Ordner. Es sind am Ende als 4 Dateien.
+3. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
+4. Führe den Befehl aus:
    
 
        bash /Volumes/NAME_DEINES_MEDIUMS/back2normal.sh
    
 
-4. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
+5. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
 
 # Wiederherstellungsoption:
 Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
