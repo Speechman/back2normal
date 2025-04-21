@@ -52,13 +52,13 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 - Neustart und direkter Reboot ins Recovery.
 - Hier wie gewohnt das back2normal.sh Script ausführen.
  
-## 3. Was tun wenn man das Update nicht mit dem "Updater"-User durchgeführt hast:    
+## 3. Was tun wenn man das Update nicht mit dem "Updater"-User durchgeführt hat:    
 - Lade Dir einen Fullinstaller herunter. (z.B. mit AnyMACOs oder GibMacOS). Starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten. Es ist lediglich wie ein Update.
 - Wenn die Installation durchgelaufen ist, melde Dich mit dem "Update" User an. NICHT mit Deinem regulären User!! Dann fährst Du das Gerät herunter und startest in den Recovery-Modus.
 - Hier wie gewohnt das back2normal.sh Script ausführen.
 - Danach kannst Du Dich mit dem regulären User wieder einloggen.
 
-Am besten ist es jedes zukünftige Update aus dem "Update"-User heraus zu starten. 
+Am besten ist es jedes zukünftige Update aus dem "Update"-User heraus zu starten und danach im Recovery wie gehabt vorzugehen. Dann sollte künftig nichts mehr anbrennen.
 
 ## Warum das ganze Prozedere mit dem "Update"-User?
 Beim erstmaligen Einloggen nach einem Update legt macOS irgendwelche Cache-Dateien des Users neu an. Darunter auch ein Teil der Lokalisation. Diese Cache-Dateien habe ich bis heute nirgends im System finden können. Evtl. sind diese auch verschlüsselt. Keine Ahnung. Demzufolge kann man sie auch nicht manuell verändern.
