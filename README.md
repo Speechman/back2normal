@@ -9,27 +9,27 @@
 Bevor du fortfährst, beachte bitte, dass die erfolgreiche Ausführung dieses Skripts die Deaktivierung der SIP-Funktion "Filesystem Protections" erfordert. Falls dies bei dir bereits der Fall ist, kannst du direkt mit der Anleitung beginnen. Sollte SIP aktiviert sein, bedenke, dass das Abschalten dieser Funktion die Volumensignierung deaktiviert, ein wichtiges Sicherheitsmerkmal von Apple. Daher ist die Entscheidung zur Deaktivierung von SIP wohlüberlegt zu treffen.
 
 ## Beschreibung
-Bist du es leid, dass macOS dir die deutsche Gendersprache aufzwingt, ohne eine alternative Option anzubieten? Mit diesem Skript kannst du im Recovery-Modus deine Systempartition von der Gendersprache befreien und zur altbekannten Sprache zurückkehren. Die einzige Voraussetzung ist, dass die SIP-Funktion "Filesystem Protections" deaktiviert ist. Falls dies nicht der Fall ist, kannst du dies im Recovery-Modus mit den folgenden beiden Terminal-Befehlen erledigen:
-
-    csrutil enable --without fs
-    csrutil authenticated-root disable
-
-Alternativ kannst du dies auch auf einem Hackintosh mit OpenCore durchführen.
+Bist du es leid, dass macOS dir die deutsche Gendersprache aufzwingt, ohne eine alternative Option anzubieten? Mit diesem Skript kannst du im Recovery-Modus deine Systempartition von der Gendersprache befreien und zur altbekannten Sprache zurückkehren. Die einzige Voraussetzung ist, dass die SIP-Funktion "Filesystem Protections" deaktiviert ist. 
 
 Dieses Skript funktioniert ab macOS Ventura (13.x).
 
 ## Schritt-für-Schritt-Anleitung:
-1. Formatieren eines USB-Sticks als FAT32 oder HFS+ und Speichern des Skripts "back2normal.sh" sowie der Datenbank "catalog.db" darauf.
-2. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
-3. Führe den Befehl aus:
+1. Formatieren eines USB-Sticks oder nutze ein anderes Medium (Du kannst auch das User Verzeichnis des System Volumes verwenden) als FAT32 oder HFS+. Es müssen folgende 4 Dateien immer zusammen in einem Ordner sein:
+
+- back2normal.sh
+- suchbegriffe.txt
+- scan.sh
+- catalog.db (erzeugst Du im nachfolgenden 2. Schritt)
+  
+2. Bevor Du ins Recovery startest musst Du noch eine catalog.db erzeugen. Dazu führst Du 'scan.sh' aus. Dies dauert ein paar Minuten. Die Datei catalog.db befindet sich danach ebenfalls in diesem Ordner.
+3. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
+4. Führe den Befehl aus:
    
 
-       bash /Volumes/NAME_DEINES_STICKS/back2normal.sh
+       bash /Volumes/NAME_DEINES_MEDIUMS/back2normal.sh
    
 
-1. Das Skript wird nach dem Startvorgang und der Auswahl des zu bearbeitenden Volumes fragen. Beachte, nicht die Partition mit dem Namen "- Data" auszuwählen.
-2. Der Rest des Vorgangs verläuft automatisch. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
-3. Gib am Ende "reboot" ein, und bei deinem nächsten Neustart erwartet dich ein macOS ohne genderbezogene Sprachanpassungen.
+5. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
 
 # Wiederherstellungsoption:
 Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
@@ -52,16 +52,20 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 
 Das war's! Im Wesentlichen verhält es sich wie bei einer frischen Installation, aber mit einer Besonderheit. Wenn du das System mit dem Skript von genderbezogener Sprache befreit hast und bereits ein oder mehrere Benutzer auf dem System vorhanden waren, wird ein Großteil der Sprachanpassungen nach einem Neustart übernommen. Es gibt jedoch drei Stellen, die weiterhin in genderbezogener Sprache verbleiben: Der "Benutzer:innen"-Ordner im Root-Verzeichnis und die Systemeinstellung "Benutzer:innen & Gruppen" sowie die dazugehörige Überschrift. Wenn dich das nicht stört, kannst du es so belassen. Wer jedoch darauf besteht, diese Sprachanpassungen zu entfernen, muss das System gemäß der Anleitung für eine "Frische Installation" auf einer anderen Partition neu aufsetzen und dann über den Migrations-Assistenten seine Daten zurückspielen. Danach kannst du sicher sein, dass die genderbezogene Sprache entfernt wurde.
 
+EDIT:
+Es hat sich herausgestellt, dass es nicht notwendig ist das Systen neu aufzusetzen. 
+- Erstelle einen neuen User (z.b. "Update"). Logge Dich mit diesem User ein.
+- Lade Dir einen Fullinstaller herunter und starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten.
+- Wenn die Installation durchgelaufen ist, melde Dich mit dem "Update" User an. NICHT mit Deinem regulären User!! Dann fährst Du das Gerät herunter und startest in den Recovery-Modus.
+- Hier wie gewohnt das back2normal.sh Script ausführen.
+- Et voila ist dein bereits vorhandenes altes System genderfrei.
+
+Am besten ist es jedes zukünftige Update aus dem Update-User heraus zu starten. 
+
 ## Was ist der Haken an der Sache?
 Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
 
 ## Fußnote
 ### Es sei ausdrücklich darauf hingewiesen, dass Eingriffe in das System auf eigene Gefahr geschehen. Es ist ratsam, stets ein Backup bereitzuhalten oder das Verfahren zuerst auf einem Testsystem auszuprobieren. Es besteht keine Haftung für Datenverlust. Zudem kann es nach einem Systemupdate erforderlich sein, das Skript erneut auszuführen. Alternativ steht jetzt auch die App "De-Genderizer" zur Verfügung, um die Patching-Operationen direkt im laufenden System durchzuführen.
-
-# Es gibt jetzt auch eine App (De-Genderizer) um das Patchen aus dem laufenden System heraus vorzunehmen
-Hier kann man sie downloaden:
-
-https://speechman.github.io/back2normal/app/degenderizer.zip
-![image](https://github.com/Speechman/back2normal/assets/148591253/60b4cc7b-4a40-4608-921c-4aa93c9017a6)
 
 
