@@ -47,7 +47,7 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 - Nach einem Reboot kannst Du dann Deine(n) Reguläre(n) User in macOS anlegen
 
 ## 2. Was tun bei einem Update: 
-- Erstelle einen neuen User (z.b. "Update") sofern Du das nicht schon bei einer Neuinstallation getan hast. Logge Dich mit diesem User ein.
+- Erstelle einen neuen User (z.b. "Update" .. denke an die Admin-Rechte) sofern Du das nicht schon bei einer Neuinstallation getan hast. Logge Dich mit diesem User ein.
 - Lasse das Update vom System einspielen.
 - Neustart und direkter Reboot ins Recovery.
 - Hier wie gewohnt das back2normal.sh Script ausführen.
