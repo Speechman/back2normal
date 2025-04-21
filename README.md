@@ -53,11 +53,7 @@ Es hat sich herausgestellt, dass es nicht notwendig ist das Systen neu aufzusetz
 - Hier wie gewohnt das back2normal.sh Script ausführen.
 - Et voila ist dein bereits vorhandenes altes System genderfrei.
 
-
-
-
-
-
+Am besten ist es jedes zukünftige Update aus dem Update-User heraus zu starten. 
 
 ## Was ist der Haken an der Sache?
 Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
