@@ -45,6 +45,20 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 
 Das war's! Im Wesentlichen verhält es sich wie bei einer frischen Installation, aber mit einer Besonderheit. Wenn du das System mit dem Skript von genderbezogener Sprache befreit hast und bereits ein oder mehrere Benutzer auf dem System vorhanden waren, wird ein Großteil der Sprachanpassungen nach einem Neustart übernommen. Es gibt jedoch drei Stellen, die weiterhin in genderbezogener Sprache verbleiben: Der "Benutzer:innen"-Ordner im Root-Verzeichnis und die Systemeinstellung "Benutzer:innen & Gruppen" sowie die dazugehörige Überschrift. Wenn dich das nicht stört, kannst du es so belassen. Wer jedoch darauf besteht, diese Sprachanpassungen zu entfernen, muss das System gemäß der Anleitung für eine "Frische Installation" auf einer anderen Partition neu aufsetzen und dann über den Migrations-Assistenten seine Daten zurückspielen. Danach kannst du sicher sein, dass die genderbezogene Sprache entfernt wurde.
 
+EDIT:
+Es hat sich herausgestellt, dass es nicht notwendig ist das Systen neu aufzusetzen. 
+- Erstelle einen neuen User (z.b. "Update"). Logge Dich mit diesem User ein.
+- Lade Dir einen Fullinstaller z.b. mit AnyMACOs herunter und starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten.
+- Wenn die Installation durchgelaufen ist, melde Dich mit dem "Update" User an. Dann fährst Du das Gerät herunter und startest in den Recovery-Modus.
+- Hier wie gewohnt das back2normal.sh Script ausführen.
+- Et voila ist dein bereits vorhandenes altes System genderfrei.
+
+
+
+
+
+
+
 ## Was ist der Haken an der Sache?
 Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
 
