@@ -19,6 +19,7 @@ Dieses Skript funktioniert ab macOS Ventura (13.x).
 - back2normal.sh
 - suchbegriffe.txt
 - scan.sh
+- catalog.db (erzeugst Du im nachfolgenden 2. Schritt)
   
 2. Bevor Du ins Recovery startest musst Du noch eine catalog.db erzeugen. Dazu führst Du 'scan.sh' aus. Dies dauert ein paar Minuten. Die Datei catalog.db befindet sich danach ebenfalls in diesem Ordner. Es sind am Ende als 4 Dateien.
 3. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
