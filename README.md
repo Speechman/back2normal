@@ -52,7 +52,7 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 - Neustart und direkter Reboot ins Recovery.
 - Hier wie gewohnt das back2normal.sh Script ausführen.
  
-## 3. Was tun wenn man das Update nicht mit dem "Updater"-User durchgeführt hat:    
+## 3. Was tun wenn man das Update nicht mit dem "Updater"-User durchgeführt hat oder man nach einem Update nicht an das Recovry gedacht hat:    
 - Lade Dir einen Fullinstaller herunter. (z.B. mit AnyMACOs oder GibMacOS). Starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten. Es ist lediglich wie ein Update.
 - Wenn die Installation durchgelaufen ist, melde Dich mit dem "Update" User an. NICHT mit Deinem regulären User!! Dann fährst Du das Gerät herunter und startest in den Recovery-Modus.
 - Hier wie gewohnt das back2normal.sh Script ausführen.
