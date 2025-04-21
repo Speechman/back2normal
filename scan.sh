@@ -2,13 +2,26 @@
 
 script_path="$(dirname "$(realpath "$0")")"
 
-if [ -f "$script_path/catalog.db_neu" ]; then
-	rm "$script_path/catalog.db_neu"
+if [ -f /usr/sbin/system_profiler ]; then
+	echo -e "\n🚫 Dieses Skript darf nur im Recovery-Modus ausgeführt werden!\n"
+	exit 1
+fi
+
+sys_version=$(sw_vers |grep ProductVersion | sed -e 's/.*://g' -e 's/\..*//g' |xargs)
+if [ "$sys_version" -lt 13 ]; then
+	echo -e "\n🚫 Diese macOS Version ($sys_version.x) wird nicht unterstützt.\n"
+	exit 1
 fi
 
 if [ -f /tmp/applications_b2n ]; then
 	rm /tmp/applications_b2n
 fi
+
+if [ -f "$script_path/catalog.db" ]; then
+	rm "$script_path/catalog.db"
+fi
+
+echo -e "\nErstellen von catalog.db (bitte hab etwas Geduld). Parser Fehler einfach ignorieren ...\n"
 
 sudo find /System/Applications /System/iOSSupport /System/Library -type f \( \
     -name "Localizable.strings" \
@@ -22,8 +35,6 @@ sudo find /System/Applications /System/iOSSupport /System/Library -type f \( \
     -exec ls "{}" \; \
 > /tmp/applications_b2n
 
-echo "/System/Library/CoreServices/SystemFolderLocalizations/de.lproj/SystemFolderLocalizations.strings" >> /tmp/applications_b2n
-echo "/System/Library/ExtensionKit/Extensions/UsersGroups.appex/Contents/Resources/InfoPlist.loctable" >> /tmp/applications_b2n
 echo "/System/Library/PrivateFrameworks/StorageManagement.framework/PlugIns/OtherUsersStorageExtension.appex/Contents/Resources/InfoPlist.loctable" >> /tmp/applications_b2n
 
 export LC_CTYPE=C
@@ -32,10 +43,12 @@ export LANG=C
 input="/tmp/applications_b2n"
 
 while IFS= read -r line; do
-  # Konvertiere die Datei in XML und durchsuche sie direkt
+  # Konvertiere die Datei in XML und durchsuche sie direkt um diese Datei in den catalog zu schreiben
   if sudo plutil -convert xml1 -o - "$line" | xmllint --format - | grep -q -F -f "$script_path/suchbegriffe.txt"; then
-    echo "$line" >> "$script_path/catalog.db_neu"
+    echo "$line" >> "$script_path/catalog.db"
   fi
 done < "$input"
 
-echo -e "Der Katalog wurde in diesem Verzeichnis als catalog.db_neu erzeugt. Um ihn zu verwenden ersetze ihn gegen die\nbestehende catalog.db Datei."
+clear
+
+echo -e "\n✅ Die Datei catalog.db wurde erzeugt."

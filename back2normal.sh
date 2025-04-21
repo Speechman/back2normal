@@ -1,21 +1,59 @@
 #!/bin/bash
 #
 #
-# De-Gender Script (v2.0)
+# De-Gender Script (v3.0)
 #
 # Endlich wieder normales Deutsch für macOS!
 #
 # Das Script setzt voraus, dass Du dich bereits im Terminal des Recovery Modus Deins Mac/Hacks befindest.
 
-if [ -f /usr/sbin/system_profiler ]; then
-    echo -e "\nDieses Script ist nicht dafür konzipiert im laufenden, normalen System ausgeführt zu werden. Es ist ausschließlich für den Recovery Modus bestimmt. Vorgang bricht nun ab. Details sind hier zu finden:\n\nhttps://github.com/Speechman/back2normal\n"
-    exit 1
-fi
+script_path="$(dirname "$(realpath "$0")")"
 
 sys_version=$( sw_vers |grep ProductVersion | sed -e 's/.*://g' -e 's/\..*//g' |xargs )
 if [ "$sys_version" -lt "13" ]; then
-    echo -e "\nDiese macOS Version ($sys_version.x) wird nicht unterstützt. Vorgang bricht nun ab.\n"
+    echo -e "\n🚫 Diese macOS Version ($sys_version.x) wird nicht unterstützt.\n"
     exit 1
+fi
+
+if [ -f /usr/sbin/system_profiler ]; then
+	echo -e "\n🚫 Dieses Skript darf nur im Recovery-Modus ausgeführt werden!\n"
+	exit 1
+fi
+
+if [ ! -f "$script_path/catalog.db" ]; then
+	echo -e "\n⛔ Datei 'catalog.db' fehlt im Skriptverzeichnis. Du musst im Live-System erst 'scan.sh' ausführen um diese Datei zu erzeugen."
+	exit 1
+fi
+
+echo "🔍 Prüfe SIP-Status..."
+fs_output=$(csrutil status)
+ar_output=$(csrutil authenticated-root)
+
+fs_needed=false
+ar_needed=false
+
+if echo "$fs_output" | grep "System Integrity Protection status: enabled."; then
+	fs_needed=true
+else
+	echo -e "\n✅ SIP war bereits deaktiviert."
+fi
+
+if echo "$ar_output" | grep "Authenticated Root status: enabled"; then
+	ar_needed=true
+else
+	echo -e "\n✅ Authenticated-Root war bereits deaktiviert.\n"
+fi
+
+if [ "$fs_needed" = true ]; then
+	echo "➡️  Deaktiviere Filesystem Protection ..."
+	csrutil enable --without fs
+fi
+
+if [ "$ar_needed" = true ]; then
+	echo "➡️  Deaktiviere authenticated-root ..."
+	csrutil authenticated-root disable
+	echo -e "\n⚠️ Bitte boote Deinen Rechner erneut in den Recovery-Modus da mit die Änderung greift.\n"
+	exit 1
 fi
 
 echo ""
@@ -37,40 +75,44 @@ else
     exit 1
 fi
 
-script_path="$(dirname "$(realpath "$0")")"
+echo "📁 Ermittle System-Volume..."
+sys_part=$(diskutil list | awk '/APFS Volume/ && !/VM|Recovery|Preboot|macOS Base System|- Data/ { sub(/.*APFS Volume[[:space:]]+/, "", $0); print }' | sed 's/\ .*//g')
 
-if [ ! -f "$script_path"/catalog.db ] ;then
-  echo "Die Datei 'catalog.db' fehlt. Bitte lege sie in den Ordner wo auch dieses Script liegt."
-  exit 1
+if [ -z "$sys_part" ]; then
+	echo "⚠️ System-Volume nicht gefunden. Liste möglicher Volumes:"
+	diskutil list |grep "APFS Volume" |sed 's/.*APFS\ Volume\ //g' |grep -v "VM" |grep -v "Recovery" |grep -v "Preboot" |grep -v "macOS Base System" |grep -v "\- Data"
+	read -rp echo -e "\nBitte wähle die System Festplatte aus. '/Volumes/' musst Du nicht mit eintippen, bloß den Volumenamen Z.B 'macOS'\n" sys_part
 fi
 
-echo -e "\nAnbei eine Übersicht mit den Volumes. Bitte wähle eines aus. '/Volumes/' musst Du nicht mit eintippen, bloß den Volumenamen"
-echo -e "\nZ.B 'macOS'\n"
-
-diskutil list |grep "APFS Volume" |sed 's/.*APFS\ Volume\ //g' |grep -v "VM" |grep -v "Recovery" |grep -v "Preboot" |grep -v "macOS Base System"
+if [ ! -d /Volumes/"$sys_part" ]; then
+	echo "⛔ Volume /Volumes/$sys_part nicht gefunden!"
+	exit 1
+fi
 
 echo ""
 
-printf 'Auf welcher Systempartition sollen die Änderungen erfolgen? '
-read sys_part
+printf "Ist '$sys_part' das korrekte System-Volume? (j/n) "
+read answer
 
-if [ ! -d /Volumes/"$sys_part" ]; then
-  echo -e "\nFehler! Die angegebene System Partition ist nicht vorhanden. Bitte prüfen."
-  exit 1
+if [ "$answer" = "n" ] ;then
+	echo -e "\nAnbei eine Übersicht mit den vorhandenen Volumes. Bitte wähle eines aus. '/Volumes/' musst Du nicht mit eintippen, bloß den Volumenamen"
+	echo -e "\nZ.B 'macOS'\n"
+
+	diskutil list |grep "APFS Volume" |sed 's/.*APFS\ Volume\ //g' |grep -v "VM" |grep -v "Recovery" |grep -v "Preboot" |grep -v "macOS Base System"
+
+	echo ""
+
+	printf 'Auf welcher Systempartition sollen die Änderungen erfolgen (drücke Control+C um das Script hier abzubrechen)? '
+	read sys_part
+elif [ "$answer" = "j" ] ;then
+	    echo -e "\nOk, los gehts!"
 fi
 
 mount -uw /Volumes/"$sys_part"
 
 if [ ! -w /Volumes/"$sys_part" ]; then
-  echo -e "\nDie System Partition konnte nicht auf R/W gesetzt werden. Das Script bricht nun ab. SIP scheint nicht deaktiviert zu sein."
-  echo "Besitzt Du einen originael Mac so gib nun folgendes ein:"
-  echo ""
-  echo "csrutil enable --without fs"
-  echo "csrutil authenticated-root disable"
-  echo ""
-  echo "Solltes Du einen Hackintosh besitzen den Du via OpenCore bootest so schaue bitte bei dortania.github.io wie man die SIP deaktiviert."
-  echo "Natürlich kannst Du aber auch wie oben für einen echten Mac beschrieben fortfahren."
-  exit 1
+	echo "⛔ Konnte Volume nicht beschreibbar mounten. Prüfe SIP-Status!"
+	exit 1
 fi
 
 export LC_TYPE=C
@@ -200,13 +242,15 @@ done < "$input"
 
 chmod 444 usr/share/degenderizer_brain.db
 
-rm Users/.localized >/dev/null 2>&1
-
-echo -e "\nDateien manifestieren ..."
-
-if bless --mount /Volumes/"$sys_part" --bootefi --create-snapshot; then
-    echo -e "\nDie Änderungen wurden auf der System Partition gespeichert. Zum Neustarten gib folgendes ein:\n"
-    echo -e "\nreboot\n"
-else
-    echo -e "Beim Blessen ist ein Fehler aufgetreten. Starte am besten den Rechner neu und versuche es erneut."
+if [ -f Users/.localized ]; then
+	rm Users/.localized
 fi
+
+echo -e "📸 Erstelle Snapshot..."
+if bless --mount /Volumes/"$sys_part" --bootefi --create-snapshot; then
+	echo -e "\n✅ Änderungen wurden erfolgreich manifestiert!"
+	echo -e "\n🔁 Starte den Mac neu mit: reboot"
+else
+	echo -e "\n⚠️ Fehler beim Erstellen des Snapshots.\n"
+fi
+
