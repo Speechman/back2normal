@@ -15,9 +15,9 @@ Dieses Skript funktioniert ab macOS Ventura (13.x).
 
 ## Schritt-für-Schritt-Anleitung:
 1. Formatieren eines USB-Sticks oder nutze ein anderes Medium (Du kannst auch das User Verzeichnis des System Volumes verwenden) als FAT32 oder HFS+. Es müssen folgende 4 Dateien immer zusammen in einem Ordner sein:
-back2normal.sh
-suchbegriffe.txt
-scan.sh
+  back2normal.sh
+  suchbegriffe.txt
+  scan.sh
 2. Bevor Du ins Recovery startest musst Du noch eine catalog.db erzeugen. Dazu führst Du 'scan.sh' aus. Dies dauert ein paar Minuten. Die Datei catalog.db befindet sich danach ebenfalls in diesem Ordner. Es sind am Ende als 4 Dateien.
 3. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
 4. Führe den Befehl aus:
