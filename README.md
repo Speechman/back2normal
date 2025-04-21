@@ -39,7 +39,7 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 # Anwendungsszenarien:
 
 ## 1. Frische Installation
-- Nachdem die frische Installation durchgelaufen ist lege als erstes einen "Update"-User an. Bei mir heisst er sinnigerweise "Update". (-:
+- Nachdem die frische Installation durchgelaufen ist lege als erstes einen "Update"-User an (dieser muss Admin-Rechte haben). Bei mir heisst er sinnigerweise "Update". (-:
 - Damit loggst Du Dich dann erstmal ein.
 - Erzeuge mit scan.sh gemäß obenstehender Anleitung die notwendige catalog.db Datei.
 - Fahre das Gerät herunter und starte unmittelbar ins Recovery
