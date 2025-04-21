@@ -21,7 +21,7 @@ Dieses Skript funktioniert ab macOS Ventura (13.x).
 - scan.sh
 - catalog.db (erzeugst Du im nachfolgenden 2. Schritt)
   
-2. Bevor Du ins Recovery startest musst Du noch eine catalog.db erzeugen. Dazu führst Du 'scan.sh' aus. Dies dauert ein paar Minuten. Die Datei catalog.db befindet sich danach ebenfalls in diesem Ordner.
+2. Bevor Du ins Recovery startest musst Du noch eine catalog.db erzeugen. Dazu führst Du 'scan.sh' im Live-System aus. Dies dauert ein paar Minuten. Die Datei catalog.db befindet sich danach ebenfalls in diesem Ordner.
 3. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
 4. Führe den Befehl aus:
    
