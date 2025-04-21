@@ -48,7 +48,7 @@ Das war's! Im Wesentlichen verhält es sich wie bei einer frischen Installation,
 EDIT:
 Es hat sich herausgestellt, dass es nicht notwendig ist das Systen neu aufzusetzen. 
 - Erstelle einen neuen User (z.b. "Update"). Logge Dich mit diesem User ein.
-- Lade Dir einen Fullinstaller z.b. mit AnyMACOs herunter und starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten.
+- Lade Dir einen Fullinstaller herunter und starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten.
 - Wenn die Installation durchgelaufen ist, melde Dich mit dem "Update" User an. NICHT mit Deinem regulären User!! Dann fährst Du das Gerät herunter und startest in den Recovery-Modus.
 - Hier wie gewohnt das back2normal.sh Script ausführen.
 - Et voila ist dein bereits vorhandenes altes System genderfrei.
