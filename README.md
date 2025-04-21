@@ -61,7 +61,7 @@ Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das le
 Am besten ist es jedes zukünftige Update aus dem "Update"-User heraus zu starten und danach im Recovery wie gehabt vorzugehen. Dann sollte künftig nichts mehr anbrennen.
 
 ## Warum das ganze Prozedere mit dem "Update"-User?
-Beim erstmaligen Einloggen nach einem Update legt macOS irgendwelche Cache-Dateien des Users neu an. Darunter auch ein Teil der Lokalisation. Diese Cache-Dateien habe ich bis heute nirgends im System finden können. Evtl. sind diese auch verschlüsselt. Keine Ahnung. Demzufolge kann man sie auch nicht manuell verändern.
+Beim erstmaligen Einloggen nach einem Update/neuer Installation legt macOS irgendwelche Cache-Dateien des Users neu an. Darunter auch ein Teil der Lokalisation. Diese Cache-Dateien habe ich bis heute nirgends im System finden können. Evtl. sind diese auch verschlüsselt. Keine Ahnung. Demzufolge kann man sie auch nicht manuell verändern.
 
 
 ## Was ist der Haken an der Sache?
