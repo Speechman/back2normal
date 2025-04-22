@@ -85,27 +85,8 @@ if [ -z "$sys_part" ]; then
 fi
 
 if [ ! -d /Volumes/"$sys_part" ]; then
-	echo "⛔ Volume /Volumes/$sys_part nicht gefunden!"
+	echo -e "\n⛔ Volume /Volumes/$sys_part nicht gefunden! Das Script bricht nun ab. Bitte führe es erneut aus.\n"
 	exit 1
-fi
-
-echo ""
-
-printf "Ist '$sys_part' das korrekte System-Volume? (j/n) "
-read answer
-
-if [ "$answer" = "n" ] ;then
-	echo -e "\nAnbei eine Übersicht mit den vorhandenen Volumes. Bitte wähle eines aus. '/Volumes/' musst Du nicht mit eintippen, bloß den Volumenamen"
-	echo -e "\nZ.B 'macOS'\n"
-
-	diskutil list |grep "APFS Volume" |sed 's/.*APFS\ Volume\ //g' |grep -v "VM" |grep -v "Recovery" |grep -v "Preboot" |grep -v "macOS Base System"
-
-	echo ""
-
-	printf 'Auf welcher Systempartition sollen die Änderungen erfolgen (drücke Control+C um das Script hier abzubrechen)? '
-	read sys_part
-elif [ "$answer" = "j" ] ;then
-	    echo -e "\nOk, los gehts!"
 fi
 
 mount -uw /Volumes/"$sys_part"
