@@ -8,6 +8,11 @@ if [ "$sys_version" -lt 13 ]; then
 	exit 1
 fi
 
+if [ ! -f /usr/sbin/system_profiler ]; then
+        echo -e "\n🚫 Dieses Skript darf nur im Live-System ausgeführt werden!\n"
+        exit 1
+fi
+
 if [ -f /tmp/applications_b2n ]; then
 	rm /tmp/applications_b2n
 fi

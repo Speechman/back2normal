@@ -76,7 +76,7 @@ else
 fi
 
 echo "📁 Ermittle System-Volume..."
-sys_part=$(diskutil list | awk '/APFS Volume/ && !/VM|Recovery|Preboot|macOS Base System|- Data/ { sub(/.*APFS Volume[[:space:]]+/, "", $0); print }' | sed 's/\ .*//g')
+sys_part=$(diskutil list | awk '/APFS Volume/ && !/VM|Recovery|Preboot|macOS Base System|- Data/ { sub(/.*APFS Volume[[:space:]]+/, "", $0); print }' | sed 's/\ \ .*//g')
 
 if [ -z "$sys_part" ]; then
 	echo "⚠️ System-Volume nicht gefunden. Liste möglicher Volumes:"
