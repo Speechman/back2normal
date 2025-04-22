@@ -2,11 +2,6 @@
 
 script_path="$(dirname "$(realpath "$0")")"
 
-if [ -f /usr/sbin/system_profiler ]; then
-	echo -e "\n🚫 Dieses Skript darf nur im Recovery-Modus ausgeführt werden!\n"
-	exit 1
-fi
-
 sys_version=$(sw_vers |grep ProductVersion | sed -e 's/.*://g' -e 's/\..*//g' |xargs)
 if [ "$sys_version" -lt 13 ]; then
 	echo -e "\n🚫 Diese macOS Version ($sys_version.x) wird nicht unterstützt.\n"
