@@ -37,6 +37,11 @@ sudo find /System/Applications /System/iOSSupport /System/Library -type f \( \
 
 echo "/System/Library/PrivateFrameworks/StorageManagement.framework/PlugIns/OtherUsersStorageExtension.appex/Contents/Resources/InfoPlist.loctable" >> /tmp/applications_b2n
 
+# Entfernt alle .lproj Ordner die nicht "de" enthalten
+{ grep -v '\.lproj' /tmp/applications_b2n; grep '/de\.lproj/' /tmp/applications_b2n; } > /tmp/applications_b2n_n
+rm /tmp/applications_b2n
+mv /tmp/applications_b2n_n /tmp/applications_b2n
+
 export LC_CTYPE=C
 export LANG=C
 
