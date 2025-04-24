@@ -51,4 +51,9 @@ done < "$input"
 
 clear
 
-echo -e "\n✅ Die Datei catalog.db wurde erzeugt."
+if [ ! -f "$script_path/catalog.db" ]; then
+    echo -e "\n✅ Es wurde keine catalog.db erzeugt weil Dein System bereits genderfrei ist. Herzlichen Glückwunsch."
+else
+    echo -e "\n✅ Die Datei catalog.db wurde erzeugt."
+fi
+
