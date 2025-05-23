@@ -57,8 +57,15 @@ done < "$input"
 clear
 
 if [ ! -f "$script_path/catalog.db" ]; then
-    echo -e "\n✅ Es wurde keine catalog.db erzeugt weil Dein System bereits genderfrei ist. Herzlichen Glückwunsch."
+    if [ -f /usr/share/degenderizer_brain.db ]; then
+        cat /usr/share/degenderizer_brain.db | sed -e 's/=.*//g' -e 's/System\/Library/\/System\/Library/g' > "$script_path/catalog.db"
+        echo -e "\n✅ Das Degendern schien schon einmal erfolgt zu sein. Damit Du es nochmal wiederholen kannst (z. B. nach einem Update), wurde die catalog.db aus dem vorherigen Degenderprozess wiederhergestellt."
+        exit 0
+    else
+        echo -e "\n⚠️ Keine catalog.db vorhanden und auch keine Sicherung in /usr/share gefunden."
+        exit 1
+    fi
 else
-    echo -e "\n✅ Die Datei catalog.db wurde erzeugt."
+    echo -e "\n✅ Die Datei catalog.db wurde erzeugt oder ist bereits vorhanden."
 fi
 
