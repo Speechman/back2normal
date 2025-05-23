@@ -228,6 +228,19 @@ if [ -f Users/.localized ]; then
 	rm Users/.localized
 fi
 
+/Volumes/"$sys_part"/./xxd /System/Library/CoreServices/com.apple.launchservices.lsd.csdb > /private/tmp/com.apple.launchservices.lsd.csdb.dump
+
+# "Benutzer:innen & Gruppen"
+sed -i '' 's/42656e75747a65723a696e656e2026204772757070656e/42656e75747a65722026204772757070656e202020202020/g' /private/tmp/com.apple.launchservices.lsd.csdb.dump
+
+# "Andere Benutzer:innen & Geteilte Dateien"
+sed -i '' 's/416e646572652042656e75747a65723a696e656e20262047657461696c7465204461746569656e/416e646572652042656e75747a657220262047657461696c7465204461746569656e202020202020/g' /private/tmp/com.apple.launchservices.lsd.csdb.dump
+
+# "Freund:innen"
+sed -i '' 's/467265756e643a696e6e/467265756e64656e202020/g' /private/tmp/com.apple.launchservices.lsd.csdb.dump
+
+/Volumes/"$sys_part"/./xxd -r /private/tmp/com.apple.launchservices.lsd.csdb.dump /System/Library/CoreServices/com.apple.launchservices.lsd.csdb
+
 echo -e "📸 Erstelle Snapshot..."
 if bless --mount /Volumes/"$sys_part" --bootefi --create-snapshot; then
 	echo -e "\n✅ Änderungen wurden erfolgreich manifestiert!"
