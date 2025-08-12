@@ -29,7 +29,7 @@ Dieses Skript funktioniert ab macOS Ventura (13.x).
        bash /Volumes/NAME_DEINES_MEDIUMS/back2normal.sh
    
 
-5. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
+5. Wähle nun noch das Systemvolume aus der Liste aus. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
 
 # Wiederherstellungsoption:
 Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
