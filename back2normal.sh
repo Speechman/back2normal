@@ -75,18 +75,43 @@ else
     exit 1
 fi
 
-echo "📁 Ermittle System-Volume..."
-sys_part=$(diskutil list | awk '/APFS Volume/ && !/VM|Recovery|Preboot|macOS Base System|- Data/ { sub(/.*APFS Volume[[:space:]]+/, "", $0); print }' | sed 's/\ \ .*//g')
+# Volumes in Array einlesen
+volumes=()
+while IFS= read -r line; do
+    volumes+=("$line")
+done < <(
+    diskutil list |
+    awk '/APFS Volume/ && !/VM|Recovery|Preboot|macOS Base System|- Data/ {
+        sub(/.*APFS Volume[[:space:]]+/, "", $0)
+        # nur bis vor die Größe (mehrere Leerzeichen vor GB, MB usw.)
+        sub(/[[:space:]]+[0-9]+(\.[0-9]+)?[[:space:]]*(GB|MB|TB).*/, "", $0)
+        print
+    }'
+)
 
-if [ -z "$sys_part" ]; then
-	echo "⚠️ System-Volume nicht gefunden. Liste möglicher Volumes:"
-	diskutil list |grep "APFS Volume" |sed 's/.*APFS\ Volume\ //g' |grep -v "VM" |grep -v "Recovery" |grep -v "Preboot" |grep -v "macOS Base System" |grep -v "\- Data"
-	read -rp echo -e "\nBitte wähle die System Festplatte aus. '/Volumes/' musst Du nicht mit eintippen, bloß den Volumenamen Z.B 'macOS'\n" sys_part
+if [ ${#volumes[@]} -eq 0 ]; then
+    echo "⚠️ Kein System-Volume gefunden."
+    exit 1
 fi
 
-if [ ! -d /Volumes/"$sys_part" ]; then
-	echo -e "\n⛔ Volume /Volumes/$sys_part nicht gefunden! Das Script bricht nun ab. Bitte führe es erneut aus.\n"
-	exit 1
+# Falls nur eins gefunden → automatisch nehmen
+if [ ${#volumes[@]} -eq 1 ]; then
+    sys_part="${volumes[0]}"
+    echo "✅ Gefunden: $sys_part"
+else
+    echo -e "🔍 Bitte wähle das System-Volume aus:\n"
+    i=1
+    for vol in "${volumes[@]}"; do
+        printf "  %d) %s\n" "$i" "$vol"
+        i=$((i+1))
+    done
+    echo
+    read -rp "Nummer eingeben: " choice
+    if ! [[ "$choice" =~ ^[0-9]+$ ]] || [ "$choice" -lt 1 ] || [ "$choice" -gt ${#volumes[@]} ]; then
+        echo "❌ Ungültige Auswahl."
+        exit 1
+    fi
+    sys_part="${volumes[$((choice-1))]}"
 fi
 
 mount -uw /Volumes/"$sys_part"
