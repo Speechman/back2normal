@@ -32,7 +32,7 @@ Dieses Skript funktioniert ab macOS Ventura (13.x).
 5. Gibt es mehrere Volumes kommt eine Abfrage welches genutzt werden soll. Gibt es nur eins wird dieses automatisch genommen. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
 
 # Wiederherstellungsoption:
-Falls während des Vorgangs etwas schiefgeht, kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
+Falls während des Vorgangs etwas schiefgeht (war bei mir noch nie der Fall aber man weiss ja nie), kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
 
     bless --mount / --last-sealed-snapshot
 
