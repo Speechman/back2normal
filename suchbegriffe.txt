@@ -37,6 +37,7 @@ ehemalige:r
 Ein:e
 ein:e
 eine:n
+eine:r
 eines:einer
 einem:einer
 Empfohlene:r
