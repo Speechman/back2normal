@@ -37,9 +37,9 @@ Falls während des Vorgangs etwas schiefgeht (war bei mir noch nie der Fall aber
     bless --mount / --last-sealed-snapshot
 
 ## Hinweis
-Falls z.b. "Benutzer:innen & Gruppen" noch übriggeblieben ist kann man mittels diesem kostenlosen Programm: 
+Falls z.b. "Benutzer:innen & Gruppen" in den Einstellungen noch übriggeblieben ist kann man mittels diesem kostenlosen Programm: 
 
-https://www.titanium-software.fr/en/onyx.html
+[OnyX](https://www.titanium-software.fr/en/onyx.html)
 
 unter der Funktion
 
