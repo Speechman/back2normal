@@ -36,46 +36,23 @@ Falls während des Vorgangs etwas schiefgeht (war bei mir noch nie der Fall aber
 
     bless --mount / --last-sealed-snapshot
 
-# Anwendungsszenarien:
-
-## 1. Frische Installation
-- Nachdem die frische Installation durchgelaufen ist lege als erstes einen "Update"-User an (dieser muss Admin-Rechte haben). Bei mir heisst er sinnigerweise "Update". (-:
-- Damit loggst Du Dich dann erstmal ein.
-- Erzeuge mit scan.sh gemäß obenstehender Anleitung die notwendige catalog.db Datei.
-- Fahre das Gerät herunter und starte unmittelbar ins Recovery
-- Lass back2normal.sh durchlaufen
-- Nach einem Reboot kannst Du dann Deine(n) Reguläre(n) User in macOS anlegen
-
-## 2. Was tun bei einem Update: 
-- Erstelle einen neuen User (z.b. "Update" .. denke an die Admin-Rechte) sofern Du das nicht schon bei einer Neuinstallation getan hast. Logge Dich mit diesem User ein.
-- Lasse das Update vom System einspielen und den Rechner dann neu starten.
-- Wieder als "Update"-User anmelden.
-- Erzeuge mit scan.sh gemäß obenstehender Anleitung die notwendige catalog.db Datei. Hinweis: Man muss nicht zwingend die catalog.db immer nach einem Update neu erzeugen. Allerdings kann man nicht wirklich wissen ob evtl. etwas Neues bzgl. Lokalisation hinzugekommen ist.
-- Neustart und direkter Reboot ins Recovery.
-- Hier wie gewohnt das back2normal.sh Script ausführen.
- 
-## 3. Was tun wenn man das Update nicht mit dem "Update"-User durchgeführt hat oder man nach einem Update nicht an das Recovery gedacht hat:    
-- Lade Dir einen Fullinstaller herunter. (z.B. mit AnyMACOs oder GibMacOS). Starte die Installation auf Dein bereits vorhandenes System. Keine Sorge, alle Deine Daten bleiben hierbei erhalten. Es ist lediglich wie ein Update.
-- Wenn die Installation durchgelaufen ist, melde Dich mit dem "Update" User an. NICHT mit Deinem regulären User!! Dann fährst Du das Gerät herunter und startest in den Recovery-Modus.
-- Hier wie gewohnt das back2normal.sh Script ausführen.
-- Danach kannst Du Dich mit dem regulären User wieder einloggen.
-
-Am besten ist es jedes zukünftige Update aus dem "Update"-User heraus zu starten und danach im Recovery wie gehabt vorzugehen. Dann sollte künftig nichts mehr anbrennen.
-
-## Warum das ganze Prozedere mit dem "Update"-User?
-Beim erstmaligen Einloggen nach einem Update/neuer Installation legt macOS irgendwelche Cache-Dateien des Users neu an. Darunter auch ein Teil der Lokalisation. Diese Cache-Dateien habe ich bis heute nirgends im System finden können. Evtl. sind diese auch verschlüsselt. Keine Ahnung. Demzufolge kann man sie auch nicht manuell verändern.
-
-### Workaround für verbleibende Gender-Fragmente :
-Falls nach einem Update z.b. "Benutzer:innen & Gruppen" noch übriggeblieben ist soll es laut einem Hinweis von MrAsh5 helfen mit dem Tool Onyx 
+## Hinweis
+Falls z.b. "Benutzer:innen & Gruppen" noch übriggeblieben ist kann man mittels diesem kostenlosen Programm: 
 
 https://www.titanium-software.fr/en/onyx.html
 
-unter der Funktion "Optimieren" einmal alle Funktionen dort über das System laufen zu lassen. Die übriggebliebene Gendersprache sollte danach dann auch verschwunden sein. Danke für den Hinweis.
+unter der Funktion
 
-Ich muss mal schauen ob sich die Funktion die Onyx da ausführt nachbilden lässt um es in mein Script einzubauen.
+<img width="92" height="62" alt="image" src="https://github.com/user-attachments/assets/2da2bbfc-c36d-42c5-b635-6869be226c6f" />
 
-## Was ist der Haken an der Sache?
-Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
+mit dieser Option
+
+<img width="871" height="68" alt="image" src="https://github.com/user-attachments/assets/54f000d4-b494-48e0-aad1-dc6705c16683" />
+
+den Cache des LaunchServices neu aufbauen. Danach sind die Gender-Restspuren nach einem Neustart verschwunden.
+
+## Was ist der Haken an der ganzen Sache?
+Der einzige Nachteil ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
 
 ## Fußnote
 ### Es sei ausdrücklich darauf hingewiesen, dass Eingriffe in das System auf eigene Gefahr geschehen. Es ist ratsam, stets ein Backup bereitzuhalten oder das Verfahren zuerst auf einem Testsystem auszuprobieren. Es besteht keine Haftung für Datenverlust. Zudem kann es nach einem Systemupdate erforderlich sein, das Skript erneut auszuführen. 
