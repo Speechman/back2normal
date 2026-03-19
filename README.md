@@ -1,59 +1,103 @@
-<h1 align="center">Genderfreies macOS!</h1>
-
+<h1 align="center">🇩🇪 Genderfreies macOS</h1>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/98193439/276884315-3c3efadf-b1a6-452e-b09a-eda1ff3a3eb8.png">
+  <img src="https://user-images.githubusercontent.com/98193439/276884315-3c3efadf-b1a6-452e-b09a-eda1ff3a3eb8.png" alt="Genderfreies macOS Banner">
 </p>
 
-<h1 align="center">Wichtiger Hinweis im Voraus:</h1>
-Bevor du fortfährst, beachte bitte, dass die erfolgreiche Ausführung dieses Skripts die Deaktivierung der SIP-Funktion "Filesystem Protections" erfordert. Falls dies bei dir bereits der Fall ist, kannst du direkt mit der Anleitung beginnen. Sollte SIP aktiviert sein, bedenke, dass das Abschalten dieser Funktion die Volumensignierung deaktiviert, ein wichtiges Sicherheitsmerkmal von Apple. Daher ist die Entscheidung zur Deaktivierung von SIP wohlüberlegt zu treffen.
+<p align="center">
+  <img src="https://img.shields.io/badge/macOS-Ventura%2B-blue?logo=apple" alt="macOS Ventura+">
+  <img src="https://img.shields.io/badge/SIP-Filesystem%20Protections%20off-red" alt="SIP">
+  <img src="https://img.shields.io/badge/Sprache-Deutsch-green" alt="Sprache">
+</p>
 
-## Beschreibung
-Bist du es leid, dass macOS dir die deutsche Gendersprache aufzwingt, ohne eine alternative Option anzubieten? Mit diesem Skript kannst du im Recovery-Modus deine Systempartition von der Gendersprache befreien und zur altbekannten Sprache zurückkehren. Die einzige Voraussetzung ist, dass die SIP-Funktion "Filesystem Protections" deaktiviert ist. 
+---
 
-Dieses Skript funktioniert ab macOS Ventura (13.x).
+> [!WARNING]
+> Die Ausführung dieses Skripts erfordert, dass die SIP-Funktion **„Filesystem Protections"** deaktiviert ist. Das Abschalten dieser Funktion deaktiviert die Volumensignierung – ein wichtiges Sicherheitsmerkmal von Apple. Triff diese Entscheidung bewusst und halte stets ein Backup bereit.
 
-## Schritt-für-Schritt-Anleitung:
-1. Formatieren eines USB-Sticks oder nutze ein anderes Medium (Du kannst auch das User Verzeichnis des System Volumes verwenden) als FAT32, EXFat, APFS oder HFS+. Es müssen folgende 4 Dateien immer zusammen in einem Ordner sein:
+## 📖 Beschreibung
 
-- back2normal.sh
-- suchbegriffe.txt
-- scan.sh
-- catalog.db (erzeugst Du im nachfolgenden 2. Schritt)
-  
-2. Bevor Du ins Recovery startest musst Du noch eine catalog.db erzeugen. Dazu führst Du 'scan.sh' im Live-System aus. Dies dauert ein paar Minuten. Die Datei catalog.db befindet sich danach ebenfalls in diesem Ordner.
-3. Starte deinen Mac im Recovery-Modus und öffne ein Terminal.
-4. Führe den Befehl aus:
-   
+Bist du es leid, dass macOS dir die deutsche Gendersprache aufzwingt, ohne eine alternative Option anzubieten? Mit diesem Skript kannst du im Recovery-Modus deine Systempartition von der Gendersprache befreien und zur klassischen deutschen Sprache zurückkehren.
 
-       bash /Volumes/NAME_DEINES_MEDIUMS/back2normal.sh
-   
+**Voraussetzung:** SIP-Funktion „Filesystem Protections" ist deaktiviert.  
+**Kompatibilität:** macOS Ventura (13.x) und neuer.
 
-5. Gibt es mehrere Volumes kommt eine Abfrage welches genutzt werden soll. Gibt es nur eins wird dieses automatisch genommen. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
+---
 
-## Hinweis
-Falls z.b. "Benutzer:innen & Gruppen" in den Einstellungen noch übriggeblieben ist kann man mittels diesem kostenlosen Programm: 
+## 🚀 Schritt-für-Schritt-Anleitung
 
-[OnyX](https://www.titanium-software.fr/en/onyx.html)
+### Schritt 1 – Medium vorbereiten
 
-unter der Funktion
+Formatiere einen USB-Stick (oder nutze ein anderes Medium, z. B. das User-Verzeichnis des System Volumes) als **FAT32, exFAT, APFS oder HFS+**.
 
-<img width="92" height="62" alt="image" src="https://github.com/user-attachments/assets/2da2bbfc-c36d-42c5-b635-6869be226c6f" />
+Folgende vier Dateien müssen sich immer gemeinsam in einem Ordner befinden:
 
-mit dieser Option
+```
+📁 dein-medium/
+├── back2normal.sh
+├── suchbegriffe.txt
+├── scan.sh
+└── catalog.db       ← wird in Schritt 2 erzeugt
+```
 
-<img width="871" height="68" alt="image" src="https://github.com/user-attachments/assets/54f000d4-b494-48e0-aad1-dc6705c16683" />
+### Schritt 2 – Katalog erzeugen (im Live-System)
 
-den Cache des LaunchServices neu aufbauen. Danach sind die Gender-Restspuren nach einem Neustart verschwunden.
+Führe **vor** dem Neustart ins Recovery `scan.sh` im laufenden System aus:
 
-# Wiederherstellungsoption:
-Falls während des Vorgangs etwas schiefgeht (war bei mir noch nie der Fall aber man weiss ja nie), kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
+```bash
+bash scan.sh
+```
 
-    bless --mount / --last-sealed-snapshot
+> Dieser Vorgang dauert einige Minuten. Die erzeugte `catalog.db` wird automatisch im selben Ordner abgelegt.
 
-## Was ist der Haken an der ganzen Sache?
-Der einzige Nachteil ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
+### Schritt 3 – Recovery-Modus starten
 
-## Fußnote
-### Es sei ausdrücklich darauf hingewiesen, dass Eingriffe in das System auf eigene Gefahr geschehen. Es ist ratsam, stets ein Backup bereitzuhalten oder das Verfahren zuerst auf einem Testsystem auszuprobieren. Es besteht keine Haftung für Datenverlust. Zudem kann es nach einem Systemupdate erforderlich sein, das Skript erneut auszuführen. 
+Starte deinen Mac im Recovery-Modus und öffne dort ein Terminal.
 
+### Schritt 4 – Skript ausführen
+
+```bash
+bash /Volumes/NAME_DEINES_MEDIUMS/back2normal.sh
+```
+
+### Schritt 5 – Fertig
+
+Sind mehrere Volumes vorhanden, wirst du gefragt, welches verwendet werden soll. Bei nur einem Volume erfolgt die Auswahl automatisch. Der Rest läuft automatisch ab – nach etwa **5–10 Minuten** ist der Prozess abgeschlossen.
+
+---
+
+## 🧹 Hinweis: Verbliebene Gender-Spuren entfernen
+
+Falls Einträge wie „Benutzer:innen & Gruppen" in den Einstellungen noch sichtbar sind, hilft das kostenlose Tool **[OnyX](https://www.titanium-software.fr/en/onyx.html)**.
+
+Nutze dort die folgende Funktion, um den **LaunchServices-Cache** neu aufzubauen:
+
+<img width="92" height="62" alt="OnyX Funktion" src="https://github.com/user-attachments/assets/2da2bbfc-c36d-42c5-b635-6869be226c6f" />
+
+Option:
+
+<img width="871" height="68" alt="OnyX Option" src="https://github.com/user-attachments/assets/54f000d4-b494-48e0-aad1-dc6705c16683" />
+
+Nach einem Neustart sind die verbleibenden Spuren verschwunden.
+
+---
+
+## ♻️ Wiederherstellung
+
+Falls etwas schiefläuft, kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen:
+
+```bash
+bless --mount / --last-sealed-snapshot
+```
+
+---
+
+## ⚠️ Bekannte Einschränkung
+
+Die SIP-Funktion „Filesystem Protections" muss **dauerhaft deaktiviert** bleiben, da die Signaturen der veränderten Dateien nicht mehr mit dem Original übereinstimmen.
+
+---
+
+## 📝 Haftungsausschluss
+
+> Eingriffe in das System geschehen auf **eigene Gefahr**. Es wird empfohlen, stets ein Backup parat zu haben oder das Verfahren zunächst auf einem Testsystem auszuprobieren. Es besteht **keine Haftung** für Datenverlust. Nach einem Systemupdate kann es erforderlich sein, das Skript erneut auszuführen.
