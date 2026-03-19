@@ -78,7 +78,7 @@ Option:
 
 <img width="871" height="68" alt="OnyX Option" src="https://github.com/user-attachments/assets/54f000d4-b494-48e0-aad1-dc6705c16683" />
 
-Nach einem Neustart sind die verbleibenden Spuren verschwunden.
+Nach einem Neustart sind die verbliebenen Spuren verschwunden.
 
 ---
 
