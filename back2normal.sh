@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #
-# De-Gender Script (v3.0)
+# De-Gender Script (v3.1)
 #
 # Endlich wieder normales Deutsch für macOS!
 #
@@ -56,7 +56,6 @@ if [ "$ar_needed" = true ]; then
 	exit 1
 fi
 
-echo ""
 echo "#######################################################"
 echo "### Endlich wieder ein genderfreies Betriebssystem! ###"
 echo "#######################################################"
@@ -253,24 +252,11 @@ if [ -f Users/.localized ]; then
 	rm Users/.localized
 fi
 
-/Volumes/"$sys_part"/usr/bin/./xxd -p System/Library/CoreServices/com.apple.launchservices.lsd.csdb | tr -d '\n' > /private/tmp/com.apple.launchservices.lsd.csdb.dump
-
-# "Benutzer:innen & Gruppen"
-sed -i '' 's/42656e75747a65723a696e6e656e2026204772757070656e/42656e75747a65722026204772757070656e202020202020/g' /private/tmp/com.apple.launchservices.lsd.csdb.dump
-
-# "Andere Benutzer:innen & Geteilte Dateien"
-sed -i '' 's/416e646572652042656e75747a65723a696e6e656e20262047657465696c7465204461746569656e/416e646572652042656e75747a657220262047657465696c7465204461746569656e202020202020/g' /private/tmp/com.apple.launchservices.lsd.csdb.dump
-
-# "Freund:innen"
-sed -i '' 's/467265756e643a696e6e656e/467265756e64656e202020202020/g' /private/tmp/com.apple.launchservices.lsd.csdb.dump
-
-/Volumes/"$sys_part"/usr/bin/./xxd -r -p /private/tmp/com.apple.launchservices.lsd.csdb.dump > System/Library/CoreServices/com.apple.launchservices.lsd.csdb
-
 echo -e "📸 Erstelle Snapshot..."
 if bless --mount /Volumes/"$sys_part" --bootefi --create-snapshot; then
 	echo -e "\n✅ Änderungen wurden erfolgreich manifestiert!"
-	echo -e "\n🔁 Starte den Mac neu mit: reboot"
+	echo -e "\n‼️ Hinweis: Sollten im System noch Fragmente der Gendersprache vorhanden sein, so führe mit dem Tool 'Onyx' unter 'Optimieren' alleinig Neuaufbau der Launch Services Datenbank aus. Alle anderen Optionen können dort ignoriert werden."
+	echo -e "\n🔁 Starte den Mac nun aber erst einmal neu mit: reboot"
 else
 	echo -e "\n⚠️ Fehler beim Erstellen des Snapshots.\n"
 fi
-
