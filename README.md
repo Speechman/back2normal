@@ -65,6 +65,14 @@ Am besten ist es jedes zukünftige Update aus dem "Update"-User heraus zu starte
 ## Warum das ganze Prozedere mit dem "Update"-User?
 Beim erstmaligen Einloggen nach einem Update/neuer Installation legt macOS irgendwelche Cache-Dateien des Users neu an. Darunter auch ein Teil der Lokalisation. Diese Cache-Dateien habe ich bis heute nirgends im System finden können. Evtl. sind diese auch verschlüsselt. Keine Ahnung. Demzufolge kann man sie auch nicht manuell verändern.
 
+### Workaround für verbleibende Gender-Fragmente :
+Falls nach einem Update z.b. "Benutzer:innen & Gruppen" noch übriggeblieben ist soll es laut einem Hinweis von MrAsh5 helfen mit dem Tool Onyx 
+
+https://www.titanium-software.fr/en/onyx.html
+
+unter der Funktion "Optimieren" einmal alle Funktionen dort über das System laufen zu lassen. Die übriggebliebene Gendersprache sollte danach dann auch verschwunden sein. Danke für den Hinweis.
+
+Ich muss mal schauen ob sich die Funktion die Onyx da ausführt nachbilden lässt um es in mein Script einzubauen.
 
 ## Was ist der Haken an der Sache?
 Die einzige Einschränkung ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
