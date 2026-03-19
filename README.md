@@ -31,11 +31,6 @@ Dieses Skript funktioniert ab macOS Ventura (13.x).
 
 5. Gibt es mehrere Volumes kommt eine Abfrage welches genutzt werden soll. Gibt es nur eins wird dieses automatisch genommen. Der Rest des Vorgangs verläuft automatisch bzw. das Script fragt bei Bedarf nach. Nach etwa 5-10 Minuten ist der Prozess abgeschlossen.
 
-# Wiederherstellungsoption:
-Falls während des Vorgangs etwas schiefgeht (war bei mir noch nie der Fall aber man weiss ja nie), kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
-
-    bless --mount / --last-sealed-snapshot
-
 ## Hinweis
 Falls z.b. "Benutzer:innen & Gruppen" in den Einstellungen noch übriggeblieben ist kann man mittels diesem kostenlosen Programm: 
 
@@ -50,6 +45,11 @@ mit dieser Option
 <img width="871" height="68" alt="image" src="https://github.com/user-attachments/assets/54f000d4-b494-48e0-aad1-dc6705c16683" />
 
 den Cache des LaunchServices neu aufbauen. Danach sind die Gender-Restspuren nach einem Neustart verschwunden.
+
+# Wiederherstellungsoption:
+Falls während des Vorgangs etwas schiefgeht (war bei mir noch nie der Fall aber man weiss ja nie), kannst du im Recovery-Modus das letzte APFS-Snapshot wiederherstellen, um alles auf den Zustand vor der Ausführung des Skripts zurückzusetzen:
+
+    bless --mount / --last-sealed-snapshot
 
 ## Was ist der Haken an der ganzen Sache?
 Der einzige Nachteil ist, dass du die SIP-Funktion "Filesystem Protections" dauerhaft deaktiviert lassen musst, da die Signaturen der veränderten Dateien nicht mehr übereinstimmen.
